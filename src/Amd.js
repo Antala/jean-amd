@@ -42,6 +42,7 @@
         checkUnresolved();
     };
     window.require = function (dependencies, factory) {
+        dependencies = Array.isArray(dependencies) ? dependencies : [dependencies];
         var resolvedModules = getResolvedModules(dependencies);
         if(resolvedModules.length === 1 && !factory){
             return resolvedModules[0];
