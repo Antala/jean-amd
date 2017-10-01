@@ -212,6 +212,20 @@ describe('jean-amd', function () {
             });
             expect(console.warn).toHaveBeenCalled();
         });
+        it("Ignores a module, if no dependency list is passed", function () {
+            spyOn(console, 'warn');
+            define("A", function () {
+                return { id: "AFirst" };
+            });
+            expect(console.warn).toHaveBeenCalled();
+            define("A", [], function () {
+                return { id: "ASecond" };
+            });
+            require(["A"], function (A) {
+                expect(A).not.toBeUndefined();
+                expect(A.id).toEqual("ASecond");
+            });
+        });
         it("Require undefined module", function () {
             try {
                 require(["A"], function () { });

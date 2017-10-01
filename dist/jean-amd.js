@@ -30,6 +30,9 @@
         if (modules.resolved[id]) {
             console.warn("There is already a module with id <" + id + "> defined. Therefore this module will be ignored");
             return;
+        } else if ((typeof id !== "string") || (!Array.isArray(dependencies)) || (typeof factory !== "function")) {
+            console.warn("Passed arguments for module are invalid");
+            return;
         }
         if (dependencies.length === 0) {
             resolve(id, factory, dependencies, [], false);
