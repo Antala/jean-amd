@@ -1,17 +1,15 @@
 {
   "name": "jean-amd",
   "version": "0.0.1",
-  "description": "Provides a basic AMD-Loader for use when all modules are build with r.js into one file",
+  "description": "Provides a minimal AMD loader for use when all modules are build with r.js into one file. Only 50 lines, much shorter than almond.",
   "main": ".js",
   "scripts": {
     "test": "open spec/spec-runner.html in browser"
   },
-  "keywords": [],
+  "keywords": ["amd", "almond", "short", "basic", "loader", "requirejs"],
   "author": "Jeremias Andris",
   "license": "MIT",
-  "dependencies": {
-    "almond": "^0.3.3"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/je-an/jean-amd.git"
