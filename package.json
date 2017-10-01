@@ -1,0 +1,25 @@
+{
+  "name": "jean-amd",
+  "version": "0.0.1",
+  "description": "Provides a basic AMD-Loader for use when all modules are build with r.js into one file",
+  "main": ".js",
+  "scripts": {
+    "test": "open spec/spec-runner.html in browser"
+  },
+  "keywords": [],
+  "author": "Jeremias Andris",
+  "license": "MIT",
+  "dependencies": {
+    "almond": "^0.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/je-an/jean-amd.git"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^3.1.0"
+  }
+}
