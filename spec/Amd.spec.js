@@ -2,7 +2,7 @@
 // jshint ignore:start
 describe('jean-amd', function () {
     beforeEach(function (done) {
-        $.getScript("../dist/jean-amd.min.js", function () { done(); });
+        $.getScript("../dist/jean-amd.js", function () { done(); });
     });
     describe("Methods", function () {
         it("describe is available", function () {
@@ -13,7 +13,7 @@ describe('jean-amd', function () {
         });
     });
     describe("Modules without dependencies", function () {
-        it("Define module", function () {
+        it("Defines module", function () {
             var i = 0;
             define("A", [], function () {
                 i++;
@@ -21,7 +21,7 @@ describe('jean-amd', function () {
                 return { id: "A" };
             });
         });
-        it("Define multiple modules", function () {
+        it("Defines multiple modules", function () {
             var i = 0;
             define("A", [], function () {
                 i++;
@@ -44,7 +44,7 @@ describe('jean-amd', function () {
                 return { id: "D" };
             });
         });
-        it("Require defined module", function (done) {
+        it("Requires defined module", function () {
             define("A", [], function () {
                 expect(true).toBe(true);
                 return { id: "A" };
@@ -52,10 +52,9 @@ describe('jean-amd', function () {
             require(["A"], function (A) {
                 expect(A).not.toBeUndefined();
                 expect(A.id).toEqual("A");
-                done();
             });
         });
-        it("Require multiple modules", function (done) {
+        it("Requires multiple modules", function () {
             define("A", [], function () {
                 return { id: "A" };
             });
@@ -77,10 +76,16 @@ describe('jean-amd', function () {
                 expect(C.id).toEqual("C");
                 expect(D).not.toBeUndefined();
                 expect(D.id).toEqual("D");
-                done();
             });
         });
-        it("Load in right order", function () {
+        it("Requires module based on its id", function () {
+            define("A", [], function () {
+                return { id: "A" };
+            });
+            var A = require("A");
+            expect(A.id).toEqual("A");
+        })
+        it("Loads defined modules in right order", function () {
             var counter = 0;
             define("A", [], function () {
                 expect(counter).toEqual(0);
@@ -104,8 +109,8 @@ describe('jean-amd', function () {
             });
         });
     });
-    describe("Modules with cascading dependencies", function () {
-        it("Define module", function () {
+    describe("Modules with dependencies", function () {
+        it("Defines module", function () {
             define("A", [], function () {
                 return { id: "A" };
             });
@@ -115,7 +120,7 @@ describe('jean-amd', function () {
                 return { id: "B" };
             });
         });
-        it("Define multiple modules", function () {
+        it("Defines multiple modules", function () {
             define("A", [], function () {
                 return { id: "A" };
             });
@@ -141,7 +146,7 @@ describe('jean-amd', function () {
                 return { id: "D" };
             });
         });
-        it("Require defined module", function () {
+        it("Requires defined module", function () {
             define("A", [], function () {
                 return { id: "A" };
             });
@@ -153,7 +158,7 @@ describe('jean-amd', function () {
                 expect(B.id).toEqual("B");
             });
         });
-        it("Require multiple defined module", function () {
+        it("Requires multiple defined modules", function () {
             define("A", [], function () {
                 return { id: "A" };
             });
@@ -177,7 +182,17 @@ describe('jean-amd', function () {
                 expect(D.id).toEqual("D");
             });
         });
-        it("Load in right order", function () {
+        it("Requires module based on its id", function () {
+            define("A", [], function () {
+                return { id: "A" };
+            });
+            define("B", ["A"], function () {
+                return { id: "B" };
+            })
+            var B = require("B");
+            expect(B.id).toEqual("B");
+        })
+        it("Loads defined modules in right order", function () {
             var counter = 0;
             define("A", [], function () {
                 expect(counter).toEqual(0);
@@ -202,7 +217,7 @@ describe('jean-amd', function () {
         });
     });
     describe("Error", function () {
-        it("Define a module with an id which is already in use", function () {
+        it("Ignores a module, if its id is already in use", function () {
             define("A", [], function () {
                 return { id: "A" };
             });
@@ -226,21 +241,21 @@ describe('jean-amd', function () {
                 expect(A.id).toEqual("ASecond");
             });
         });
-        it("Require undefined module", function () {
+        it("Throws exception, if a undefined module is required", function () {
             try {
                 require(["A"], function () { });
             } catch (e) {
                 expect(e instanceof Error).toBe(true);
             }
         });
-        it("Require multiple undefined modules", function () {
+        it("Throws exception, if multiple undefined modules are required", function () {
             try {
                 require(["A", "B", "C"], function () { });
             } catch (e) {
                 expect(e instanceof Error).toBe(true);
             }
         });
-        it("Require modules which have circular dependencies", function (done) {
+        it("Throws exception, if modules with circular dependencies are required", function (done) {
             define("A", ["B"], function (B) {
                 return "A";
             });
@@ -254,7 +269,7 @@ describe('jean-amd', function () {
                 done();
             }
         });
-        it("Require module with unresolved dependencies", function () {
+        it("Throws exception, if modules with unresolved dependency is required", function () {
             define("A", [], function () {
                 return { id: "A" };
             });

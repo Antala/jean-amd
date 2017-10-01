@@ -1,7 +1,6 @@
 ## Description
 
-Provides a minimal AMD loader for use when all modules are build with r.js into one file. Only
-50 lines, much shorter than almond.
+Provides a minimal AMD loader for use when all modules are build with r.js into one file. Much shorter than almond.
 
 ## Restrictions
 - All modules must be located into one file

@@ -43,7 +43,10 @@
     };
     window.require = function (dependencies, factory) {
         var resolvedModules = getResolvedModules(dependencies);
-        if (resolvedModules.length === dependencies.length) {
+        if(resolvedModules.length === 1 && !factory){
+            return resolvedModules[0];
+        }
+        if (resolvedModules.length === dependencies.length && factory) {
             factory.apply(factory, resolvedModules);
         } else {
             throw new Error("Not all modules are resolved");
