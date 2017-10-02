@@ -23,6 +23,11 @@ module.exports = function (grunt) {
         },
         uglify: {
             my_target: {
+                options: {
+                    compress: {
+                        drop_console: true
+                    }
+                },
                 files: {
                     'dist/jean-amd.min.js': ['src/Amd.js']
                 }
