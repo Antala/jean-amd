@@ -1,3 +1,4 @@
+var require, define;
 (function (window) {
     var modules = { resolved: {}, unresolved: {} };
     function getResolvedModules(dependencies) {
@@ -26,7 +27,7 @@
             }
         }
     }
-    window.define = function (id, dependencies, factory) {
+    define = function (id, dependencies, factory) {
         if (modules.resolved[id]) {
             console.warn("There is already a module with id <" + id + "> defined. Therefore this module will be ignored");
             return;
@@ -41,7 +42,7 @@
         }
         checkUnresolved();
     };
-    window.require = function (dependencies, factory) {
+    require = function (dependencies, factory) {
         dependencies = Array.isArray(dependencies) ? dependencies : [dependencies];
         var resolvedModules = getResolvedModules(dependencies);
         if(resolvedModules.length === 1 && !factory){
@@ -53,4 +54,4 @@
             throw new Error("Not all modules are resolved");
         }
     };
-})(window);
+})();
