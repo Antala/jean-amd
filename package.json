@@ -1,6 +1,6 @@
 {
   "name": "jean-amd",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Provides a minimal AMD loader for use when all modules are build with r.js into one file. Much shorter than almond.",
   "main": ".js",
   "scripts": {
