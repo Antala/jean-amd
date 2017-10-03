@@ -1,8 +1,8 @@
 {
   "name": "jean-amd",
-  "version": "0.0.5",
-  "description": "Provides a minimal AMD loader for use when all modules are build with r.js into one file. Much shorter than almond.",
-  "main": ".js",
+  "version": "0.0.6",
+  "description": "Provides a minimal AMD loader for use when all modules are build with r.js into one file",
+  "main": "dist/jean-amd.js",
   "scripts": {
     "test": "open spec/spec-runner.html in browser"
   },
