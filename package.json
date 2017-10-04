@@ -7,11 +7,13 @@
     "test": "open spec/spec-runner.html in browser"
   },
   "keywords": [
+    "minimal",
     "amd",
+    "loader",
+    "AMD",
     "almond",
     "short",
     "basic",
-    "loader",
     "requirejs"
   ],
   "author": "Jeremias Andris",
