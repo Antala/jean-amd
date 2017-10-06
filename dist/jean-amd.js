@@ -42,6 +42,7 @@ var require, define;
         }
         checkUnresolved();
     };
+    define.amd = {}; 
     require = function (dependencies, factory) {
         dependencies = Array.isArray(dependencies) ? dependencies : [dependencies];
         var resolvedModules = getResolvedModules(dependencies);

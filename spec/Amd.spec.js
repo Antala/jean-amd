@@ -6,10 +6,14 @@ describe('jean-amd', function () {
     });
     describe("Methods", function () {
         it("describe is available", function () {
-            expect(window.define).not.toBeUndefined();
+            expect(define).not.toBeUndefined();
         });
+        it("describe.amd is available", function () {
+            var d = 0;
+            expect(define.amd).not.toBeUndefined();
+        })
         it("require is available", function () {
-            expect(window.require).not.toBeUndefined();
+            expect(require).not.toBeUndefined();
         });
     });
     describe("Modules without dependencies", function () {
