@@ -11,7 +11,7 @@ Provides a minimal AMD loader for use when all modules are optimized with r.js i
 
 ## Example
 This example shall provide a workflow to develop a application and use jean-amd as the AMD loader of choice. Therefore we implemented a simple app, which
-writes "Hello Word" into the browser window. For this, the following files will be added: 
+writes "Hello World" into the browser window. For this, the following files will be added: 
 
 ```
 -- example
