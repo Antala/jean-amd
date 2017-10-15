@@ -5,10 +5,10 @@ describe('jean-amd', function () {
         $.getScript("../dist/jean-amd.js", function () { done(); });
     });
     describe("Methods", function () {
-        it("describe is available", function () {
+        it("define is available", function () {
             expect(define).not.toBeUndefined();
         });
-        it("describe.amd is available", function () {
+        it("define.amd is available", function () {
             var d = 0;
             expect(define.amd).not.toBeUndefined();
         })
@@ -289,6 +289,12 @@ describe('jean-amd', function () {
             } catch (e) {
                 expect(e instanceof Error).toBe(true);
             }
+        });
+        it("Provides an empty object, if a module dont provide a result value", function () {
+            define("A", [], function () { });
+            require(["A"], function (A) {
+                expect(A).toEqual({});
+            });
         });
     });
 });

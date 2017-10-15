@@ -19,7 +19,8 @@ var require, define;
     }
     function resolve(id, factory, dependencies, resolvedModules, saveUnresolved) {
         if (resolvedModules.length === dependencies.length) {
-            modules.resolved[id] = factory.apply(factory, resolvedModules);
+            var mod = factory.apply(factory, resolvedModules);
+            modules.resolved[id] = mod ? mod : {};
         } else if (saveUnresolved) {
             modules.unresolved[id] = {
                 dependencies: dependencies,

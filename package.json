@@ -1,6 +1,6 @@
 {
   "name": "jean-amd",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Provides a minimal AMD loader for use when all modules are build with r.js into one file",
   "main": "dist/jean-amd.js",
   "scripts": {
